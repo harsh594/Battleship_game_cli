@@ -1,6 +1,7 @@
 import winsound
+import sys
 fname = "F:\\Spit.wav"
-y=1
+y = 1
 while(y==1):
  print('''welcome to Batlleship game 
       Choose game mode:
@@ -8,11 +9,11 @@ while(y==1):
       Medium -Press:3(3 battle ships in sea :5 chances to sink it)
       Hard -Press:5(5 battle ships in sea:7 chances to sink it)
       ''')
- u=True   
+ u = True   
  while u:
      try:
       n=int(input("Enter your Choice\n"))
-      u=False
+      u = False
      except ValueError:
       print("wrong entry choice : enter 1(easy),3(medium) or 5(hard) and try again")
       continue
@@ -30,12 +31,12 @@ while(y==1):
     except ValueError:
        print("Error! Press only enter please")
        continue
-    if o=="":
+    if o=='':
       break
     else:
        print("Error!Press only enter please") 
        u=True
- q=n+3
+ q = n+3
  from random import randint
 
  board = []
@@ -46,7 +47,7 @@ while(y==1):
  def print_board(board):
     for row in board:
         
-        print((" ".join(row).center(70)))
+        print((" ".join(row).center(71)))
         
  print("\t \t \t INITIAL BATTLEFIELD")
  print_board(board)
@@ -59,7 +60,7 @@ while(y==1):
  def check_already_sinked(z):
     for e in a:
          if z==e:
-            print("OOPS!you Already sank that ship.Turn not counted")
+            print("OOPS!you Already sank that ship. Turn is not counted, Try again")
             return True
     return False     
 
@@ -68,34 +69,33 @@ while(y==1):
     ship_row = random_row(board)
     ship_col = random_col(board)
     for j in l:
-        while([ship_row,ship_col]==j):#tuple  can have only one argument thtas wwhy multiple brackets
+        while([ship_row,ship_col] == j):#tuple  can have only one argument thtas why multiple brackets
            ship_row = random_row(board)
            ship_col = random_col(board)
             
     l.append([ship_row,ship_col])
 # print(l)    
- a=[]    
- x=1
+ a = []    
+ x = 1
  while(x<q):
      
      print(" \tChance no. %s" % (x))
-     t=True
+     t = True
      while(t):
       try:         
        guess_row = int(input("guess_row"))
        
        guess_col = int(input("guess_col"))
-       t=False
+       t = False
       except ValueError:
        print("Wrong entry choice : Guess Row And Column Again")
        continue
      if(guess_row not in range(len(board)) or guess_col not in range(len(board[0]))): 
-      print("OOPS! SHIP NOT EVEN IN THE OCEAN! Turn not counted\n")
+      print("OOPS! SHIP IS NOT EVEN IN THE OCEAN! Turn not counted\n")
       continue
      if check_already_sinked([guess_row,guess_col])==True:
       continue
     
-         
      for k,p in enumerate(l,1): 
        # print(p)
       
